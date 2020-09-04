@@ -2,7 +2,7 @@
 using RoR2;
 using UnityEngine;
 
-namespace totalItemCount
+namespace TotalItemCount
 {
     [BepInDependency("com.bepis.r2api")]
     //Change these
