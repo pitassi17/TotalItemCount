@@ -1,0 +1,10 @@
+{
+	"name": "TotalItemCount",
+	"version_number": "1.0.0",
+	"website_url": "https://github.com/pitassi17/TotalItemCount",
+	"description": "Display a total count of a player's items.",
+	"dependencies": [
+        "bbepis-BepInExPack-5.3.1",
+        "tristanmcpherson-R2API-2.5.7"
+    ]
+}
