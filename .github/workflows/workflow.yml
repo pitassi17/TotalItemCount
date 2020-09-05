@@ -20,7 +20,8 @@ jobs:
       - run: |
           mkdir dist/
           cp images/icon.png dist/
-          cp manifest.json README.md dist/
+          cp manifest.json dist/
+          cp README.md dist/
           cp TotalItemCount/bin/Release/netstandard2.0/TotalItemCount.dll dist/
       - uses: actions/upload-artifact@v2
         with:
