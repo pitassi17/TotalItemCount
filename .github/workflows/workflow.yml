@@ -1,0 +1,20 @@
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        dotnet: [ '3.1.x' ]
+    name: Dotnet ${{ matrix.dotnet }} sample
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      - name: Check out libs
+        uses: actions/checkout@master
+        with:
+          repository: harbingerofme/RoR2Libs
+      - run: dir
+      - run: ls
+      - run: dotnet msbuild /p:Configuration=Release
