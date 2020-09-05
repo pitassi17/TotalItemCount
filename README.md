@@ -2,6 +2,8 @@
 
 Provides the total item count of each player in the TAB overlay (Scoreboard).
 
+The count is currently displayed just after the player name, but we are working on customizing its position (e.g. placing it next to the money gathered).
+
 ![shot-0](./images/shot-0.png)
 ![shot-1](./images/shot-1.png)
 ![shot-3](./images/shot-3.png)
