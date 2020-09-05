@@ -13,24 +13,21 @@ namespace TotalItemCount
         private Transform HUDRoot = null;
         public void Awake()
         {
+            On.RoR2.UI.ScoreboardStrip.SetMaster += addTotalItemCount;
+        }
 
-            Chat.AddMessage("Loaded Test!");
-            //Inventory.GetItemCount(ItemIndex);
+        private void addTotalItemCount(On.RoR2.UI.ScoreboardStrip.orig_SetMaster orig, RoR2.UI.ScoreboardStrip self, CharacterMaster master)
+        {
+            orig(self, master);
 
-            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) =>
+            Chat.AddMessage("hello the scoreboard is up");
+            int itemCount = 0;
+            for (ItemTier i = 0; i <= ItemTier.Boss; i++)
             {
-                //Inventory inv = CharacterMaster.Inventory;
-                for (int i = 0; i < CharacterMaster.readOnlyInstancesList.Count; i++)
-                {
-                    CharacterMaster player = CharacterMaster.readOnlyInstancesList[i];
-                    if (player.teamIndex == TeamIndex.Player && player.minionOwnership.group == null)
-                    {
-                        itemCount = player.inventory.itemAcquisitionOrder.Count;
-                    }
-                }
+                itemCount += master.inventory.GetTotalItemCountOfTier(i);
+            }
 
-                orig(self);
-            };
+            self.nameLabel.text = Util.GetBestMasterName(master) + " | " + itemCount;
         }
     }
 }
