@@ -15,6 +15,5 @@ jobs:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Check out libs
         run: git clone https://github.com/harbingerofme/RoR2Libs.git libs
-      - run: dir
       - run: dotnet restore
       - run: dotnet msbuild /p:Configuration=Release
