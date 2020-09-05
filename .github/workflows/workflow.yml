@@ -17,11 +17,12 @@ jobs:
         run: git clone https://github.com/harbingerofme/RoR2Libs.git libs
       - run: dotnet restore
       - run: dotnet msbuild /p:Configuration=Release
+      - run: |
+          mkdir dist/
+          cp images/icon.png dist/
+          cp manifest.json README.md dist/
+          cp TotalItemCount/bin/Release/netstandard2.0/TotalItemCount.dll dist/
       - uses: actions/upload-artifact@v2
         with:
-          name: TotalItemCount.zip
-          path: |
-            TotalItemCount/bin/Release/netstandard2.0/TotalItemCount.dll
-            manifest.json
-            README.md
-            images/icon.png
+          name: TotalItemCount
+          path: dist
