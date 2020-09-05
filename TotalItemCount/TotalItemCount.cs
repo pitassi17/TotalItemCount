@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using R2API.Utils;
 using RoR2;
 
 namespace TotalItemCount
@@ -18,7 +19,7 @@ namespace TotalItemCount
             return itemCount;
         }
 
-        private void SetItemCountDisplay(
+        private void SetMoneyTextWrapping(
             On.RoR2.UI.ScoreboardStrip.orig_SetMaster orig,
             RoR2.UI.ScoreboardStrip self,
             CharacterMaster master
@@ -26,17 +27,32 @@ namespace TotalItemCount
         {
             orig(self, master);
 
-            self.nameLabel.text = Util.GetBestMasterName(master) + " | " + GetItemCount(master);
+            self.moneyText.enableWordWrapping = true;
+        }
+
+        private void SetItemCountDisplay(
+            On.RoR2.UI.ScoreboardStrip.orig_Update orig,
+            RoR2.UI.ScoreboardStrip self
+        )
+        {
+            orig(self);
+
+            var master = self.GetFieldValue<CharacterMaster>("master");
+            self.moneyText.text = string.Format("{0} Items ${1}", GetItemCount(master), master.money);
         }
 
         public void Awake()
         {
-            On.RoR2.UI.ScoreboardStrip.SetMaster += SetItemCountDisplay;
+            On.RoR2.UI.ScoreboardStrip.SetMaster += SetMoneyTextWrapping;
+
+            On.RoR2.UI.ScoreboardStrip.Update += SetItemCountDisplay;
         }
 
         public void Destroy()
         {
-            On.RoR2.UI.ScoreboardStrip.SetMaster -= SetItemCountDisplay;
+            On.RoR2.UI.ScoreboardStrip.SetMaster -= SetMoneyTextWrapping;
+
+            On.RoR2.UI.ScoreboardStrip.Update += SetItemCountDisplay;
         }
     }
 }
