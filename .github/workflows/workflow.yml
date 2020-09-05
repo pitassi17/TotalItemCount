@@ -14,9 +14,6 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Check out libs
-        uses: actions/checkout@master
-        with:
-          repository: harbingerofme/RoR2Libs
+        run: git clone https://github.com/harbingerofme/RoR2Libs.git libs
       - run: dir
-      - run: ls
       - run: dotnet msbuild /p:Configuration=Release
