@@ -14,6 +14,8 @@ Install via the Thunderstore page with r2modman. Requires BepInEx pack.
 
 ## Building
 
+TODO - not all of these are necessary, but they're what we copied over to `libs/` initially.
+
 We use the DLLs from BepInEx pack:
 - `core`
 - `monomod`
