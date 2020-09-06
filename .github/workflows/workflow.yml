@@ -21,8 +21,9 @@ jobs:
       - run: dotnet restore
       - run: dotnet msbuild /p:Configuration=Release
       - run: |
-          mkdir dist/
+          mkdir -p dist/images
           cp images/icon.png dist/
+          cp images/shot*png dist/images/
           cp manifest.json dist/
           cp README.md dist/
           cp TotalItemCount/bin/Release/netstandard2.0/TotalItemCount.dll dist/
