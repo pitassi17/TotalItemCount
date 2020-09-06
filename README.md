@@ -8,6 +8,10 @@ The item count is displayed just above the amount of money gathered.
 ![shot-1](./images/shot-1.png)
 ![shot-2](./images/shot-2.png)
 
+## Alternatives
+
+There's a mod that provides already here: https://thunderstore.io/package/mrarm/ItemCounters/ - we just wrote this to figure out how to write RoR2 mods.
+
 ## Installation
 
 Install via the Thunderstore page with r2modman. Requires BepInEx pack.
