@@ -21,12 +21,10 @@ jobs:
       - run: dotnet restore
       - run: dotnet msbuild /p:Configuration=Release
       - run: |
-          sed -i -e "s|\./images/shot-\(.\)\.png|https://raw.githubusercontent.com/pitassi17/TotalItemCount/master/images/shot-\1.png|" README.md
-      - run: |
           mkdir dist
           cp images/icon.png dist/
           cp manifest.json dist/
-          cp README.md dist/
+          sed -e "s|\./images/shot-\(.\)\.png|https://raw.githubusercontent.com/pitassi17/TotalItemCount/master/images/shot-\1.png|" README.md > dist/README.md
           cp TotalItemCount/bin/Release/netstandard2.0/TotalItemCount.dll dist/
       - uses: actions/upload-artifact@v2
         with:
